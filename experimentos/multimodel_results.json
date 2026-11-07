@@ -1,0 +1,301 @@
+{
+  "gemma2:2b": {
+    "model": "gemma2:2b",
+    "display_name": "Gemma 2 (2.6B, Local)",
+    "N": 120,
+    "has_logprobs": true,
+    "overall_accuracy": 0.9833333333333333,
+    "verbose_accuracy": 0.9916666666666667,
+    "tier_metrics": {
+      "head": {
+        "n": 40,
+        "acc": 1.0,
+        "err": 0.0,
+        "ci": [
+          0.9123754607496077,
+          1.0
+        ]
+      },
+      "mid": {
+        "n": 40,
+        "acc": 1.0,
+        "err": 0.0,
+        "ci": [
+          0.9123754607496077,
+          1.0
+        ]
+      },
+      "tail": {
+        "n": 40,
+        "acc": 0.95,
+        "err": 0.050000000000000044,
+        "ci": [
+          0.834958291820748,
+          0.9861796228538989
+        ]
+      }
+    },
+    "spearman_rho": 0.1594482010358202,
+    "spearman_p": 0.10937812437512498,
+    "aucs": {
+      "short_min_lp": {
+        "auc": 0.9957627118644068,
+        "ci": [
+          0.5,
+          1.0
+        ]
+      },
+      "short_mean_lp": {
+        "auc": 0.9957627118644068,
+        "ci": [
+          0.5,
+          1.0
+        ]
+      },
+      "verbose_mean_lp": {
+        "auc": 0.9449152542372881,
+        "ci": [
+          0.5,
+          0.9830508474576272
+        ]
+      },
+      "autoconsistencia": {
+        "auc": 1.0,
+        "ci": [
+          0.5,
+          1.0
+        ]
+      }
+    },
+    "delta_auc_exact_vs_verbose": {
+      "delta": 0.05084745762711873,
+      "ci": [
+        0.008688155922038953,
+        0.10084033613445376
+      ]
+    },
+    "taxonomy": {
+      "B1_siempre_correcto": 81,
+      "B2_mayormente_correcto": 37,
+      "D_dos_competidores": 1,
+      "C1_consistentemente_incorrecto": 1
+    },
+    "n_wrong": 2,
+    "hidden_knowledge_frac": 0.5,
+    "hidden_knowledge_ci": [
+      0.09452865480086614,
+      0.9054713451991339
+    ],
+    "selection_accuracy": {
+      "greedy": 0.9833333333333333,
+      "voto_mayoria": 0.9833333333333333,
+      "oraculo_muestreo": 0.9916666666666667
+    },
+    "e1_rubrics": {
+      "0.0": {
+        "abstain_rate": 0.0,
+        "score_own": 0.9833333333333333,
+        "score_always": 0.9833333333333333
+      },
+      "0.5": {
+        "abstain_rate": 0.0,
+        "score_own": 0.9666666666666667,
+        "score_always": 0.9666666666666667
+      },
+      "0.99": {
+        "abstain_rate": 0.0,
+        "score_own": -0.6666666666666653,
+        "score_always": -0.6666666666666653
+      }
+    }
+  },
+  "gemma3:4b": {
+    "model": "gemma3:4b",
+    "display_name": "Gemma 3 (4B, Local)",
+    "N": 120,
+    "has_logprobs": true,
+    "overall_accuracy": 0.9916666666666667,
+    "verbose_accuracy": 0.9833333333333333,
+    "tier_metrics": {
+      "head": {
+        "n": 40,
+        "acc": 1.0,
+        "err": 0.0,
+        "ci": [
+          0.9123754607496077,
+          1.0
+        ]
+      },
+      "mid": {
+        "n": 40,
+        "acc": 1.0,
+        "err": 0.0,
+        "ci": [
+          0.9123754607496077,
+          1.0
+        ]
+      },
+      "tail": {
+        "n": 40,
+        "acc": 0.975,
+        "err": 0.025000000000000022,
+        "ci": [
+          0.8711834051199223,
+          0.9955732825922052
+        ]
+      }
+    },
+    "spearman_rho": 0.11227217828476797,
+    "spearman_p": 0.34313137372525493,
+    "aucs": {
+      "short_min_lp": {
+        "auc": 0.8907563025210085,
+        "ci": [
+          0.5,
+          0.940677966101695
+        ]
+      },
+      "short_mean_lp": {
+        "auc": 0.8991596638655462,
+        "ci": [
+          0.5,
+          0.9411764705882353
+        ]
+      },
+      "verbose_mean_lp": {
+        "auc": 0.8739495798319328,
+        "ci": [
+          0.5,
+          0.9243697478991597
+        ]
+      },
+      "autoconsistencia": {
+        "auc": 0.47478991596638653,
+        "ci": [
+          0.453781512605042,
+          0.5
+        ]
+      }
+    },
+    "delta_auc_exact_vs_verbose": {
+      "delta": 0.01680672268907568,
+      "ci": [
+        -0.05932203389830504,
+        0.09243697478991597
+      ]
+    },
+    "taxonomy": {
+      "B1_siempre_correcto": 113,
+      "B2_mayormente_correcto": 6,
+      "C1_consistentemente_incorrecto": 1
+    },
+    "n_wrong": 1,
+    "hidden_knowledge_frac": 0.0,
+    "hidden_knowledge_ci": [
+      0.0,
+      0.7934567085261071
+    ],
+    "selection_accuracy": {
+      "greedy": 0.9916666666666667,
+      "voto_mayoria": 0.9916666666666667,
+      "oraculo_muestreo": 0.9916666666666667
+    },
+    "e1_rubrics": {
+      "0.0": {
+        "abstain_rate": 0.0,
+        "score_own": 0.9666666666666667,
+        "score_always": 0.9916666666666667
+      },
+      "0.5": {
+        "abstain_rate": 0.0,
+        "score_own": 0.9666666666666667,
+        "score_always": 0.9833333333333333
+      },
+      "0.99": {
+        "abstain_rate": 0.0,
+        "score_own": -0.6666666666666653,
+        "score_always": 0.16666666666666738
+      }
+    }
+  },
+  "gemma4:e4b": {
+    "model": "gemma4:e4b",
+    "display_name": "Gemma 4 (E4B, Local)",
+    "N": 120,
+    "has_logprobs": true,
+    "overall_accuracy": 1.0,
+    "verbose_accuracy": 0.9916666666666667,
+    "tier_metrics": {
+      "head": {
+        "n": 40,
+        "acc": 1.0,
+        "err": 0.0,
+        "ci": [
+          0.9123754607496077,
+          1.0
+        ]
+      },
+      "mid": {
+        "n": 40,
+        "acc": 1.0,
+        "err": 0.0,
+        "ci": [
+          0.9123754607496077,
+          1.0
+        ]
+      },
+      "tail": {
+        "n": 40,
+        "acc": 1.0,
+        "err": 0.0,
+        "ci": [
+          0.9123754607496077,
+          1.0
+        ]
+      }
+    },
+    "spearman_rho": NaN,
+    "spearman_p": 0.0001999600079984003,
+    "aucs": {},
+    "delta_auc_exact_vs_verbose": {
+      "delta": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ]
+    },
+    "taxonomy": {
+      "B2_mayormente_correcto": 43,
+      "B1_siempre_correcto": 71,
+      "C2_consistentemente_incorrecto_con_aciertos": 6
+    },
+    "n_wrong": 0,
+    "hidden_knowledge_frac": 0.0,
+    "hidden_knowledge_ci": [
+      0.0,
+      0.0
+    ],
+    "selection_accuracy": {
+      "greedy": 1.0,
+      "voto_mayoria": 0.9416666666666667,
+      "oraculo_muestreo": 1.0
+    },
+    "e1_rubrics": {
+      "0.0": {
+        "abstain_rate": 0.0,
+        "score_own": 0.9166666666666666,
+        "score_always": 1.0
+      },
+      "0.5": {
+        "abstain_rate": 0.0,
+        "score_own": -0.13333333333333333,
+        "score_always": 1.0
+      },
+      "0.99": {
+        "abstain_rate": 0.0,
+        "score_own": -73.99999999999994,
+        "score_always": 1.0
+      }
+    }
+  }
+}

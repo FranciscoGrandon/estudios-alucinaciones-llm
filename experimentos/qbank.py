@@ -1,0 +1,75 @@
+# Creado por Francisco Grandón Vergara
+"""Banco de 120 preguntas factuales propias (verificables), 3 estratos de 'popularidad' (proxy de frecuencia en el corpus).
+Formato: (tier, pregunta, patron_regex_de_respuestas_correctas_sobre_texto_normalizado_sin_acentos)
+"""
+head = [
+ ("What is the capital of France?", r"paris"), ("Who wrote Romeo and Juliet?", r"shakespeare"),
+ ("What is the chemical symbol for gold?", r"\bau\b"), ("What is the largest planet in the Solar System?", r"jupiter"),
+ ("Who painted the Mona Lisa?", r"leonardo|da vinci"), ("What is the capital of Japan?", r"tokyo"),
+ ("Who wrote the novel 1984?", r"orwell"), ("In what year did Apollo 11 land on the Moon?", r"\b1969\b"),
+ ("What is the capital of Italy?", r"\brome\b|roma"), ("Who developed the theory of general relativity?", r"einstein"),
+ ("What is the capital of Spain?", r"madrid"), ("What is the largest ocean on Earth?", r"pacific"),
+ ("Who wrote Pride and Prejudice?", r"austen"), ("What is the capital of Canada?", r"ottawa"),
+ ("What is the chemical symbol for sodium?", r"\bna\b"), ("Who discovered penicillin?", r"fleming"),
+ ("What is the capital of Germany?", r"berlin"), ("What is the longest river in Africa?", r"\bnile\b"),
+ ("Who composed The Four Seasons?", r"vivaldi"), ("Who was the first President of the United States?", r"washington"),
+ ("What is the capital of Egypt?", r"cairo"), ("Which planet is known as the Red Planet?", r"\bmars\b"),
+ ("Who wrote the Odyssey?", r"homer"), ("What is the capital of Brazil?", r"brasilia"),
+ ("What is the chemical symbol for iron?", r"\bfe\b"), ("Who painted The Starry Night?", r"van gogh"),
+ ("What is the capital of Russia?", r"moscow"), ("What is the hardest natural substance?", r"diamond"),
+ ("In what year did World War II end?", r"\b1945\b"), ("What is the capital of Argentina?", r"buenos aires"),
+ ("Who wrote Don Quixote?", r"cervantes"), ("What is the capital of China?", r"beijing|peking"),
+ ("Who developed the first successful polio vaccine?", r"salk"), ("What is the capital of Portugal?", r"lisbon|lisboa"),
+ ("What is the chemical symbol for silver?", r"\bag\b"), ("Who wrote The Divine Comedy?", r"dante"),
+ ("What is the capital of Chile?", r"santiago"), ("Who wrote The Great Gatsby?", r"fitzgerald"),
+ ("What is the capital of Turkey?", r"ankara"), ("Who formulated the laws of motion and universal gravitation?", r"newton"),
+]
+mid = [
+ ("What is the capital of Kazakhstan?", r"astana|nur-sultan|nursultan"), ("What is the capital of New Zealand?", r"wellington"),
+ ("What is the capital of Switzerland?", r"\bbern\b|berne"), ("What is the capital of Myanmar?", r"naypyidaw|nay pyi taw|naypyitaw"),
+ ("What is the capital of Nigeria?", r"abuja"), ("What is the capital of Vietnam?", r"hanoi|ha noi"),
+ ("What is the capital of Morocco?", r"rabat"), ("What is the capital of Ecuador?", r"quito"),
+ ("What is the capital of Tanzania?", r"dodoma"), ("What is the capital of Ivory Coast (Cote d'Ivoire), the political capital?", r"yamoussoukro"),
+ ("What is the capital of Pakistan?", r"islamabad"), ("What is the atomic number of carbon?", r"\b6\b|\bsix\b"),
+ ("What is the atomic number of gold?", r"\b79\b"), ("What is the atomic number of iron?", r"\b26\b"),
+ ("What is the atomic number of uranium?", r"\b92\b"), ("Who wrote One Hundred Years of Solitude?", r"garcia marquez"),
+ ("Who wrote Crime and Punishment?", r"dostoevsk|dostoyevsk"), ("Who composed the Moonlight Sonata?", r"beethoven"),
+ ("Who painted Guernica?", r"picasso"), ("In what year did the Berlin Wall fall?", r"\b1989\b"),
+ ("In what year did the French Revolution begin?", r"\b1789\b"), ("In what year was the Magna Carta sealed?", r"\b1215\b"),
+ ("In what year did the Titanic sink?", r"\b1912\b"), ("Who was the first woman to win a Nobel Prize?", r"curie"),
+ ("Who discovered the electron?", r"thomson"), ("Who proposed the heliocentric model in De revolutionibus?", r"copernic"),
+ ("Who wrote Les Miserables?", r"hugo"), ("What is the capital of Mongolia?", r"ulaanbaatar|ulan bator"),
+ ("What is the capital of Bhutan?", r"thimphu"), ("What is the capital of Laos?", r"vientiane"),
+ ("What is the capital of Nepal?", r"kathmandu"), ("What is the capital of Slovakia?", r"bratislava"),
+ ("What is the capital of Croatia?", r"zagreb"), ("What is the capital of Lithuania?", r"vilnius"),
+ ("What is the capital of Estonia?", r"tallinn"), ("What is the capital of Latvia?", r"\briga\b"),
+ ("What is the capital of Iceland?", r"reykjavik"), ("What is the capital of Uruguay?", r"montevideo"),
+ ("What is the capital of Paraguay?", r"asuncion"), ("What is the capital of Kenya?", r"nairobi"),
+]
+tail = [
+ ("What is the capital of Burkina Faso?", r"ouagadougou"), ("What is the capital of Eritrea?", r"asmara"),
+ ("What is the capital of Malawi?", r"lilongwe"), ("What is the capital of Suriname?", r"paramaribo"),
+ ("What is the capital of Brunei?", r"bandar seri begawan"), ("What is the capital of Kyrgyzstan?", r"bishkek"),
+ ("What is the capital of Tajikistan?", r"dushanbe"), ("What is the capital of Turkmenistan?", r"ashgabat|ashkhabad"),
+ ("What is the capital of the Comoros?", r"moroni"), ("What is the capital of Djibouti?", r"djibouti"),
+ ("What is the capital of Vanuatu?", r"port vila"), ("What is the capital of Palau?", r"ngerulmud|melekeok"),
+ ("What is the capital of Tuvalu?", r"funafuti"), ("What is the capital of Nauru?", r"yaren"),
+ ("What is the capital of Kiribati?", r"tarawa"), ("What is the capital of Liechtenstein?", r"vaduz"),
+ ("What is the capital of Moldova?", r"chisinau"), ("What is the capital of Guinea-Bissau?", r"bissau"),
+ ("What is the capital of Lesotho?", r"maseru"), ("What is the capital of Togo?", r"\blome\b"),
+ ("What is the capital of Gabon?", r"libreville"), ("What is the capital of Chad?", r"djamena"),
+ ("What is the capital of Mauritania?", r"nouakchott"), ("What is the capital of Sierra Leone?", r"freetown"),
+ ("What is the capital of Papua New Guinea?", r"port moresby"), ("What is the capital of Fiji?", r"\bsuva\b"),
+ ("What is the capital of Samoa?", r"\bapia\b"), ("What is the capital of Tonga?", r"alofa"),
+ ("What is the capital of Azerbaijan?", r"\bbaku\b"),
+ ("What is the atomic number of hafnium?", r"\b72\b"), ("What is the atomic number of tungsten?", r"\b74\b"),
+ ("What is the atomic number of osmium?", r"\b76\b"), ("What is the atomic number of ytterbium?", r"\b70\b"),
+ ("What is the atomic number of rhenium?", r"\b75\b"), ("What is the atomic number of tellurium?", r"\b52\b"),
+ ("What is the atomic number of gallium?", r"\b31\b"), ("What is the atomic number of niobium?", r"\b41\b"),
+ ("What is the atomic number of europium?", r"\b63\b"), ("What is the atomic number of lutetium?", r"\b71\b"),
+ ("What is the atomic number of thallium?", r"\b81\b"),
+]
+QUESTIONS = [dict(id=i, tier=t, q=q, pat=p) for i, (t, lst) in enumerate(
+    [("head", x) for x in head] + [("mid", x) for x in mid] + [("tail", x) for x in tail])
+    for q, p in [lst]]
+assert len(QUESTIONS) == 120, len(QUESTIONS)

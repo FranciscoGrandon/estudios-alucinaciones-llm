@@ -1,0 +1,2 @@
+{"id": 0, "tier": "head", "q": "What is the capital of France?", "pat": "paris", "short": {"text": ""}, "verbose": {"text": ""}, "samples": [{"text": ""}, {"text": ""}, {"text": ""}, {"text": ""}, {"text": ""}], "conf": {"0.0": {"text": ""}, "0.5": {"text": ""}, "0.99": {"text": ""}}}
+{"id": 1, "tier": "head", "q": "Who wrote Romeo and Juliet?", "pat": "shakespeare", "short": {"text": ""}, "verbose": {"text": ""}, "samples": [{"text": ""}, {"text": ""}, {"text": ""}, {"text": ""}, {"text": ""}], "conf": {"0.0": {"text": ""}, "0.5": {"text": ""}, "0.99": {"text": ""}}}

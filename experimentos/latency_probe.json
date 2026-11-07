@@ -1,0 +1,240 @@
+[
+ {
+  "q": "What is the capital of Australia?",
+  "resp": "The capital of Australia is Canberra. \n",
+  "secs": 7.036363363265991,
+  "eval_count": 10,
+  "has_logprobs": true,
+  "keys": [
+   "model",
+   "created_at",
+   "response",
+   "done",
+   "done_reason",
+   "context",
+   "total_duration",
+   "load_duration",
+   "prompt_eval_count",
+   "prompt_eval_cached_count",
+   "prompt_eval_duration",
+   "eval_count",
+   "eval_duration",
+   "logprobs"
+  ],
+  "lp_sample": [
+   {
+    "token": "The",
+    "logprob": -0.019048849120736122,
+    "bytes": [
+     84,
+     104,
+     101
+    ]
+   },
+   {
+    "token": " capital",
+    "logprob": -0.0005741575150750577,
+    "bytes": [
+     32,
+     99,
+     97,
+     112,
+     105,
+     116,
+     97,
+     108
+    ]
+   }
+  ]
+ },
+ {
+  "q": "Who wrote Don Quixote?",
+  "resp": "Miguel de Cervantes wrote Don Quixote. \n",
+  "secs": 1.2374565601348877,
+  "eval_count": 10,
+  "has_logprobs": true,
+  "keys": [
+   "model",
+   "created_at",
+   "response",
+   "done",
+   "done_reason",
+   "context",
+   "total_duration",
+   "load_duration",
+   "prompt_eval_count",
+   "prompt_eval_cached_count",
+   "prompt_eval_duration",
+   "eval_count",
+   "eval_duration",
+   "logprobs"
+  ],
+  "lp_sample": [
+   {
+    "token": "Miguel",
+    "logprob": -0.2286110818386078,
+    "bytes": [
+     77,
+     105,
+     103,
+     117,
+     101,
+     108
+    ]
+   },
+   {
+    "token": " de",
+    "logprob": -0.004283769056200981,
+    "bytes": [
+     32,
+     100,
+     101
+    ]
+   }
+  ]
+ },
+ {
+  "q": "What is the chemical symbol for gold?",
+  "resp": "The chemical symbol for gold is **Au**. \n",
+  "secs": 1.570223093032837,
+  "eval_count": 12,
+  "has_logprobs": true,
+  "keys": [
+   "model",
+   "created_at",
+   "response",
+   "done",
+   "done_reason",
+   "context",
+   "total_duration",
+   "load_duration",
+   "prompt_eval_count",
+   "prompt_eval_cached_count",
+   "prompt_eval_duration",
+   "eval_count",
+   "eval_duration",
+   "logprobs"
+  ],
+  "lp_sample": [
+   {
+    "token": "The",
+    "logprob": -0.07099676132202148,
+    "bytes": [
+     84,
+     104,
+     101
+    ]
+   },
+   {
+    "token": " chemical",
+    "logprob": -0.002319640014320612,
+    "bytes": [
+     32,
+     99,
+     104,
+     101,
+     109,
+     105,
+     99,
+     97,
+     108
+    ]
+   }
+  ]
+ },
+ {
+  "q": "What is the capital of Burkina Faso?",
+  "resp": "The capital of Burkina Faso is Ouagadougou. \n",
+  "secs": 1.4800999164581299,
+  "eval_count": 13,
+  "has_logprobs": true,
+  "keys": [
+   "model",
+   "created_at",
+   "response",
+   "done",
+   "done_reason",
+   "context",
+   "total_duration",
+   "load_duration",
+   "prompt_eval_count",
+   "prompt_eval_cached_count",
+   "prompt_eval_duration",
+   "eval_count",
+   "eval_duration",
+   "logprobs"
+  ],
+  "lp_sample": [
+   {
+    "token": "The",
+    "logprob": -0.016100885346531868,
+    "bytes": [
+     84,
+     104,
+     101
+    ]
+   },
+   {
+    "token": " capital",
+    "logprob": -2.9802766221109778e-05,
+    "bytes": [
+     32,
+     99,
+     97,
+     112,
+     105,
+     116,
+     97,
+     108
+    ]
+   }
+  ]
+ },
+ {
+  "q": "In which year did the Battle of Hastings take place?",
+  "resp": "The Battle of Hastings took place in 1066. \n",
+  "secs": 1.723379373550415,
+  "eval_count": 16,
+  "has_logprobs": true,
+  "keys": [
+   "model",
+   "created_at",
+   "response",
+   "done",
+   "done_reason",
+   "context",
+   "total_duration",
+   "load_duration",
+   "prompt_eval_count",
+   "prompt_eval_cached_count",
+   "prompt_eval_duration",
+   "eval_count",
+   "eval_duration",
+   "logprobs"
+  ],
+  "lp_sample": [
+   {
+    "token": "The",
+    "logprob": -5.018836964154616e-05,
+    "bytes": [
+     84,
+     104,
+     101
+    ]
+   },
+   {
+    "token": " Battle",
+    "logprob": -0.00016392620455008,
+    "bytes": [
+     32,
+     66,
+     97,
+     116,
+     116,
+     108,
+     101
+    ]
+   }
+  ]
+ }
+]

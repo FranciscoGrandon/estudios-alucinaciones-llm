@@ -1,0 +1,10 @@
+﻿__pycache__/
+*.pyc
+.pytest_cache/
+.epistemic_state/
+.ag_state/
+*.tmp
+.venv/
+
+
+.agents/

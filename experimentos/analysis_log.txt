@@ -1,0 +1,29 @@
+N=120 greedy-short acc=0.983  verbose acc=0.992 idk(short)=0.000
+  tier head: n=40 acc=1.000 CI[0.912,1.000]
+  tier mid: n=40 acc=1.000 CI[0.912,1.000]
+  tier tail: n=40 acc=0.950 CI[0.835,0.986]
+  Spearman(tier ordinal, error)=0.159  permutation p(one-sided)=0.1026
+E3b AUROC (label = greedy short correcto):
+  verbose_mean_lp (todos los tokens): AUC=0.945 CI[0.500,0.983] p_perm=0.0084
+  verbose_min_lp (todos los tokens): AUC=0.970 CI[0.500,0.992] p_perm=0.0018
+  short_mean_lp (tokens respuesta): AUC=0.996 CI[0.500,1.000] p_perm=0.0002
+  short_min_lp (tokens respuesta): AUC=0.996 CI[0.500,1.000] p_perm=0.0004
+  short_first_token_lp: AUC=0.576 CI[0.112,1.000] p_perm=0.3581
+  autoconsistencia (K=10): AUC=1.000 CI[0.500,1.000] p_perm=0.0006
+  -entropia de clusters (K=10): AUC=0.996 CI[0.500,1.000] p_perm=0.0002
+  delta AUC (short_min - verbose_mean): {'delta': 0.05084745762711873, 'ci': [0.01342377689360455, 0.09401709401709402]}
+E3c taxonomía: {'B1_siempre_correcto': 81, 'B2_mayormente_correcto': 37, 'E2_muchas_respuestas_con_acierto': 1, 'C1_consistentemente_incorrecto': 1}
+  por estrato: {'head': {'B1_siempre_correcto': 29, 'B2_mayormente_correcto': 11}, 'mid': {'B2_mayormente_correcto': 14, 'B1_siempre_correcto': 26}, 'tail': {'B1_siempre_correcto': 26, 'B2_mayormente_correcto': 12, 'E2_muchas_respuestas_con_acierto': 1, 'C1_consistentemente_incorrecto': 1}}
+E3d greedy-wrong n=2; con respuesta correcta en >=1 de 10 muestras: 0.500 CI[0.095,0.905]
+  accuracy por estrategia: {'greedy': 0.9833333333333333, 'azar(K=10)': 0.9408333333333334, 'voto_mayoria': 0.9833333333333333, 'max_mean_logprob': 0.9833333333333333, 'oraculo_any': 0.9916666666666667}
+  voto_mayoria - greedy: +0.000 CI(0.0, 0.0) p=1.0000
+  max_mean_logprob - greedy: +0.000 CI(0.0, 0.0) p=1.0000
+  azar - greedy: -0.042 CI(-0.056687499999999995, -0.02833333333333333) p=0.0002
+E1 (score = (aciertos - pen*errores)/N, pen=t/(1-t)):
+  t=0.0: pen=0.0 abst=0.000 acc|ans=0.983 err|ans=0.017(obj<= 1.00) score own=0.983 always=0.983 selfcons=0.983 oracle=0.983
+  t=0.5: pen=1.0 abst=0.000 acc|ans=0.983 err|ans=0.017(obj<= 0.50) score own=0.967 always=0.967 selfcons=0.983 oracle=0.983
+  t=0.75: pen=3.0 abst=0.000 acc|ans=0.983 err|ans=0.017(obj<= 0.25) score own=0.933 always=0.933 selfcons=0.950 oracle=0.983
+  t=0.9: pen=9.0 abst=0.000 acc|ans=0.983 err|ans=0.017(obj<= 0.10) score own=0.833 always=0.833 selfcons=0.675 oracle=0.983
+  t=0.99: pen=99.0 abst=0.000 acc|ans=0.983 err|ans=0.017(obj<= 0.01) score own=-0.667 always=-0.667 selfcons=0.675 oracle=0.983
+  McNemar abstención t=.99 vs t=0: 0 vs 0  p=1
+  AUC(abstención@t=.9 predice error de greedy) = nan

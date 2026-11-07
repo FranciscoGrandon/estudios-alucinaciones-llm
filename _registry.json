@@ -1,0 +1,38 @@
+{
+  "D:\\Marketing\\estudios_alucinaciones_llm\\Google_LLMs_Know_More_Than_They_Show_2410.02707.pdf::PyMuPDF4LLM": {
+    "hash": "91100fa3dbade152fda1eda05423ab34",
+    "md_path": "D:\\Marketing\\estudios_alucinaciones_llm\\Google_LLMs_Know_More_Than_They_Show_2410.02707.md",
+    "source": "D:\\Marketing\\estudios_alucinaciones_llm\\Google_LLMs_Know_More_Than_They_Show_2410.02707.pdf",
+    "converter": "PyMuPDF4LLM",
+    "size_chars": 125722,
+    "tokens_approx": 20056,
+    "converted": "2026-11-06T20:00:24.245843"
+  },
+  "D:\\Marketing\\estudios_alucinaciones_llm\\Google_Research_Publication_Web_Print.pdf::PyMuPDF4LLM": {
+    "hash": "c604237b9aab72f87ff63ff769156fa4",
+    "md_path": "D:\\Marketing\\estudios_alucinaciones_llm\\Google_Research_Publication_Web_Print.md",
+    "source": "D:\\Marketing\\estudios_alucinaciones_llm\\Google_Research_Publication_Web_Print.pdf",
+    "converter": "PyMuPDF4LLM",
+    "size_chars": 2284,
+    "tokens_approx": 408,
+    "converted": "2026-11-06T20:00:25.025762"
+  },
+  "D:\\Marketing\\estudios_alucinaciones_llm\\OpenAI_Why_Language_Models_Hallucinate_Paper.pdf::PyMuPDF4LLM": {
+    "hash": "daf58ee273fe76ed61968b422a0c7b8d",
+    "md_path": "D:\\Marketing\\estudios_alucinaciones_llm\\OpenAI_Why_Language_Models_Hallucinate_Paper.md",
+    "source": "D:\\Marketing\\estudios_alucinaciones_llm\\OpenAI_Why_Language_Models_Hallucinate_Paper.pdf",
+    "converter": "PyMuPDF4LLM",
+    "size_chars": 101767,
+    "tokens_approx": 19695,
+    "converted": "2026-11-06T20:00:53.025379"
+  },
+  "D:\\Marketing\\estudios_alucinaciones_llm\\OpenAI_Why_Language_Models_Hallucinate_Web_Print.pdf::PyMuPDF4LLM": {
+    "hash": "cd4df9cfd82cacd3c3c80687a20f334f",
+    "md_path": "D:\\Marketing\\estudios_alucinaciones_llm\\OpenAI_Why_Language_Models_Hallucinate_Web_Print.md",
+    "source": "D:\\Marketing\\estudios_alucinaciones_llm\\OpenAI_Why_Language_Models_Hallucinate_Web_Print.pdf",
+    "converter": "PyMuPDF4LLM",
+    "size_chars": 12623,
+    "tokens_approx": 2446,
+    "converted": "2026-11-06T20:00:55.581937"
+  }
+}
