@@ -1,4 +1,3 @@
-# Creado por Francisco Grandón Vergara
 # 🔬 Reporte Técnico de Investigación sobre Alucinaciones en LLMs: Inevitabilidad Estadística, Coerción Sintáctica, Desacoplamiento Latente e Histéresis Epistémica
 
 > **Autor:** Francisco Grandón Vergara  
