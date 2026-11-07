@@ -7,6 +7,13 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/
 ## [Unreleased]
 
 ### Añadido
+- Documentación completa en inglés técnico y académico para publicación internacional en GitHub manteniendo intactas las versiones maestras en español:
+  - `README.md`: Portada principal del repositorio en idioma inglés estándar de publicación con selectores bilingües y enlaces directos a `README.es.md`.
+  - `README.es.md`: Preservación íntegra de la documentación de portada en español con selectores bilingües cruzados.
+  - `technical_report_hallucinations.md`: Traducción académica formal de 844 líneas de `reporte_tecnico_alucinaciones.md` al estándar internacional (NeurIPS/ICML/ICLR), con todas las demostraciones matemáticas, teoremas 1 al 8, matrices de transición markoviana y análisis inferencial.
+  - `experiments_report.md`: Traducción técnica exhaustiva de 507 líneas de `informe_experimentos.md` con trazabilidad completa de los 10 experimentos analíticos y empíricos.
+  - `herramientas/report_10q_models_experiment.md` y `herramientas/report_tools_validation.md`: Traducción de los reportes técnicos del benchmark controlado de 80 evaluaciones y del diseño/validación de la suite de herramientas epistémicas.
+  - Prueba de integración continua `test_34_bilingual_english_and_spanish_documentation_integrity` en `tests/test_epistemic_tools.py` para asegurar la paridad documental permanente.
 - Motor CLI de gobernanza epistémica determinista `herramientas/epistemic_ops.py` con soporte para `--json`, escritura atómica (`tempfile.mkstemp` + `os.replace`), normalización CRLF a LF en hashes SHA-256 y rechazo de symlinks/junctions:
   - Subcomando `ontology-probe` (Mitigación de Teorías 2 y 7): indexación AST de Python, JSON de 1° y 2° nivel y cabeceras CSV (`utf-8-sig`), cálculo de `missing_mass_ratio` y códigos de salida deterministas (`0`, `1`, `2`).
   - Subcomando `anchor-check` (Mitigación de Teoría 8 y Descubrimiento 4): persistencia de recibos por ronda en `.epistemic_state/epistemic_anchor_<task_id>.json` y bloqueo programático (`exit_code = 2`, `HYSTERESIS_UNANCHORED_RETRY`) de reintentos de autocorrección con $\Delta\text{Evidencia} = 0$.
