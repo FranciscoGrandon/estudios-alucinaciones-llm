@@ -1,251 +1,255 @@
 # Creado por Francisco Grandón Vergara
-# 🔬 Reporte Técnico de Investigación sobre Alucinaciones en LLMs: Inevitabilidad Estadística, Coerción Sintáctica, Desacoplamiento Latente e Histéresis Epistémica
+# 🔬 Research Technical Report on LLM Hallucinations: Statistical Inevitability, Syntactic Coercion, Latent Decoupling, and Epistemic Hysteresis
 
-> **Autor:** Francisco Grandón Vergara  
-> **Afiliación:** Investigador Independiente en IA e Ingeniería de Sistemas  
-> **Fecha:** Noviembre de 2026  
-> **Estado:** Reporte Técnico de Investigación y Batería Experimental Completados (100% Reproducible en Local)  
-> **Modelos Evaluados:** Google Gemma 2 (2.6B), Gemma 3 (4.0B), Gemma 4 (E4B 4.0B CoT) y Gemma 4 Ablated (Sin CoT)
-
----
-
-## 📌 Resumen del Proyecto
-
-Este repositorio contiene la investigación formal, demostraciones matemáticas, scripts reproducibles, bancos de datos y reportes teóricos de un estudio sobre los fundamentos de las **alucinaciones en modelos de lenguaje autorregresivos (LLMs)**.
-
-Partiendo de los fundamentos clásicos de reducción estadística y masa faltante de Good-Turing ([Kalai et al., 2025](file:///D:/Marketing/estudios_alucinaciones_llm/Material.md)) y del probing de representaciones latentes ([Orgad et al., ICLR 2025](file:///D:/Marketing/estudios_alucinaciones_llm/Material.md)), la investigación formula **ocho teorías científicas originales**, demuestra **cuatro descubrimientos empíricos originales** y ejecuta una batería de **diez experimentos empíricos controlados (E1 a E10)** en un entorno local sobre pesos abiertos con 384 inferencias multi-ronda.
+> 🇬🇧 **English Version** | 🇪🇸 **[Versión en Español (Spanish Version)](README.es.md)**  
+> **Full Technical Documents:** [Technical Report (English)](technical_report_hallucinations.md) | [Reporte Técnico (Español)](reporte_tecnico_alucinaciones.md) | [Experiments Report (English)](experiments_report.md) | [Informe de Experimentos (Español)](informe_experimentos.md)  
+> **Author:** Francisco Grandón Vergara  
+> **Affiliation:** Independent Researcher in Artificial Intelligence and Systems Engineering  
+> **Date:** November 2026  
+> **Status:** Research Technical Report and Experimental Battery Completed (100% Locally Reproducible)  
+> **Evaluated Models:** Google Gemma 2 (2.6B), Gemma 3 (4.0B), Gemma 4 (E4B 4.0B CoT), and Gemma 4 Ablated (without CoT)
 
 ---
 
-## 🏆 Los 4 Descubrimientos Empíricos Clave de la Investigación
+## 📌 Project Overview
 
-### 1. Causalidad de la Coerción Sintáctica (Demostración por Ablación en Gemma 4)
-* **Hallazgo:** Cuando se prohíbe explícitamente a un LLM abstenerse (*«nunca digas no sé»*), los modelos autorregresivos tradicionales (Gemma 2 y Gemma 3) colapsan en una tasa de alucinación del **58.33% global y 83.33% en entidades inexistentes**. Gemma 4 E4B resiste la trampa reduciendo el error al **16.67%**.
-* **Prueba Causal de Ablación:** Al suprimir forzadamente el canal de pensamiento previo (`thinking`) en Gemma 4 mediante decodificación directa (`raw: True`), la alucinación forzada **se triplicó al 58.33%** y alcanzó el **100.0% de invención en entidades inexistentes**, confabulando que *«el 31 de abril de 1999 fue jueves»*. Esto demuestra que el razonamiento en cadena no añade memoria fáctica, sino que actúa como un **buffer de arbitraje ontológico previo al colapso del argmax**.
+This repository hosts the formal investigation, mathematical reductions, reproducible evaluation scripts, empirical datasets, and theoretical reports of a research study on the foundational dynamics of **hallucinations in autoregressive Large Language Models (LLMs)**.
 
-### 2. Teorema de Ortogonalidad entre Cómputo Latente y Sycophancy
-* **Hallazgo:** Gemma 3 capitula en el **80.0%** de los casos ante la objeción del usuario y en el **100.0%** ante citas de autoridad espuria (resoluciones falsas de la IUPAC, INE, Nobel), pidiendo disculpas por su "error". Por el contrario, Gemma 4 exhibe una **firmeza dialéctica del 100% (0.0% de capitulación)**.
-* **Descubrimiento Novedoso:** La ablación de *thinking* en Gemma 4 **mantuvo el 0.0% de adulación**. Esto demuestra empíricamente que la integridad dialéctica y la resistencia a la coerción de prompt habitan en variedades funcionales ortogonales: la firmeza conversacional reside en la simetría de la función de recompensa del post-entrenamiento (RLHF), mientras que la resistencia a la coerción sintáctica reside en la profundidad del cómputo latente en tiempo de inferencia ($T_{\text{CoT}} > 0$).
-
-### 3. Invarianza de la Epidemia del Farol a Través de Generaciones
-* **Hallazgo:** Las advertencias de penalización asimétrica en el prompt ($t=0.99$, castigo de 99 puntos por error) resultan **estériles** en las tres generaciones (tasa de abstención $= 0.000$, $p=1.000$ en test de McNemar), colapsando el score a $-0.667$. Sin embargo, un ensamble estocástico externo rescata una utilidad positiva de $+0.675$.
-
-### 4. La Paradoja de la Autocorrección No Fundamentada y la Histéresis Epistémica (Experimento E10)
-* **Hallazgo:** Exigir iterativamente a un modelo que audite y corrija sus salidas previas (*«Revisa tu respuesta, identifica alucinaciones y corrígelas»*) sin fuentes externas de contraste induce una dinámica de histéresis positiva profunda ($\Delta_{\text{Hist}}^{\text{Non-can}} = +12.57\%$) y confina al modelo en un atractor de confabulación persistente ($T_{\mathcal{H}\to\mathcal{H}} = 83.8\%$). En modelos densos tradicionales (Gemma 2 y Gemma 3), el prompt reflexivo destruye el 100% de la veracidad canónica inicial en el primer turno ($r=1$).
-* **Escudo Protector Causal:** Gemma 4 con razonamiento latente (*thinking*) activo absorbe la presión adversarial y mantiene la veracidad canónica ($F=1.00, p_{\text{GG}}=0.3506$). Su ablación experimental reproduce de inmediato el colapso de los modelos densos ($W=0.0, Z=3.4903, p=3.052 \times 10^{-5}, r=+1.0000$), demostrando que la estabilidad temporal en interacciones continuas es una propiedad causal de la computación latente desacoplada.
+Building upon classical formulations of statistical reduction and Good-Turing missing mass ([Kalai et al., 2025](Material.md)) as well as internal latent probing ([Orgad et al., ICLR 2025](Material.md)), this study introduces **eight original scientific theories**, establishes **four original empirical discoveries**, and executes a comprehensive testbed of **ten controlled empirical experiments (E1 through E10)** in a deterministic local environment on open weights encompassing 384 multi-round inferences.
 
 ---
 
-## 📐 Las 8 Teorías Científicas Originales Postuladas
+## 🏆 4 Key Empirical Discoveries of the Investigation
 
-1. **Teoría 1: Principio de Inducción de Entropía por Evaluación Binaria (La Epidemia del Farol):**  
-   Bajo métricas 0-1, responder al azar es una estrategia estrictamente dominante sobre abstenerse, forzando al RLHF a penalizar la cautela y suprimir los estados IDK.
-2. **Teoría 2: Dualidad de Masa Faltante de Turing-Kalai:**  
-   En hechos de cola larga arbitrarios, la tasa de alucinación asintótica está acotada inferiormente por la tasa de singletons de Good-Turing: $\text{err}(\hat{p}) \ge sr - \mathcal{O}(1/\sqrt{N})$.
-3. **Teoría 3: Teorema del Cuello de Botella del Argmax Latente:**  
-   La decodificación greedy actúa como un proyector con pérdida de información que colapsa la separabilidad lineal casi completa de capas intermedias (AUROC $\ge 0.996$) hacia atractores léxicos locales.
-4. **Teoría 4: Principio de Coerción Sintáctica vs. Desacoplamiento por Razonamiento Latente:**  
-   La atención prioriza las restricciones inhibitorias del prompt sobre la consistencia ontológica salvo que exista un espacio latente desacoplado que arbitre la contradicción lógica antes de la emisión observable.
-5. **Teoría 5: Ley del Colapso Dialéctico por Alineamiento Complaciente (Sycophancy):**  
-   El RLHF ingenuo distorsiona la actualización bayesiana del modelo, induciendo una razón de verosimilitud anómala donde la objeción del usuario se asume casi certera, provocando la retractación de hechos demostrables.
-6. **Teoría 6: Teorema de Ortogonalidad entre Robustez Ontológica y Firmeza Dialéctica:**  
-   La robustez ontológica (gobernada por CoT en inferencia) y la firmeza dialéctica (gobernada por RLHF en entrenamiento) son ortogonales e independientes.
-7. **Teoría 7: Ley de Confabulación Racionalizada de Segundo Orden:**  
-   En hechos pertenecientes a la masa faltante pura, si el modelo carece de detectores ontológicos de inexistencia, el CoT extendido transmuta el error léxico en confabulaciones silogísticas hiper-persuasivas.
-8. **Teoría 8: Ley de la Histéresis Epistémica y Propagación de Cascadas Alucinatorias:**  
-   En procesos de interacción multi-ronda sin inyección perceptual externa, la dinámica de estados epistémicos exhibe histéresis positiva ($\Delta_{\text{Hist}}^{\text{Non-can}} > 0$) y un atractor confabulatorio cuasi-absorbente ($T_{\mathcal{H}\to\mathcal{H}} = 83.8\%$). Solo un canal de computación latente desacoplado actúa como amortiguador de histéresis ($\Delta_{\text{Hist}}^{\text{CoT}} < \Delta_{\text{Hist}}^{\text{Ablated}}$).
+### 1. Causality of Syntactic Coercion (Demonstrated via Thinking Ablation in Gemma 4)
+* **Finding:** When an autoregressive LLM is explicitly forbidden from abstaining (*"never say I don't know"*), conventional models (Gemma 2 and Gemma 3) collapse into a hallucination rate of **58.33% globally and 83.33% on nonexistent entities**. Gemma 4 E4B withstands this syntactic trap, curbing the error to **16.67%**.
+* **Causal Ablation Evidence:** Forcibly suppressing the latent thinking channel (`thinking`) in Gemma 4 via direct decoding (`raw: True`) **tripled forced hallucinations to 58.33%** and induced a **100.0% confabulation rate on nonexistent entities** (inventing that *"April 31, 1999 fell on a Thursday"*). This causally proves that chain-of-thought tokens do not inject factual memory into synaptical weights; rather, they serve as an **ontological arbitration buffer prior to the greedy argmax projection**.
+
+### 2. Orthogonality Theorem Between Latent Reasoning and Sycophancy
+* **Finding:** Gemma 3 capitulates in **80.0%** of adversarial user objections and in **100.0%** of spurious authority challenges (fictitious resolutions from IUPAC, INE, Nobel committees), subserviently apologizing for its "mistake". Conversely, Gemma 4 exhibits **100.0% dialectical firmness (0.0% capitulation)**.
+* **Structural Discovery:** Latent thinking ablation in Gemma 4 **preserved the 0.0% sycophancy rate**. This demonstrates that dialectical integrity and prompt coercion resistance inhabit orthogonal functional manifolds: conversational firmness is governed by post-training alignment symmetry (RLHF reward topology), whereas syntactic coercion resistance is governed by latent compute depth at inference time ($T_{\text{CoT}} > 0$).
+
+### 3. Cross-Generational Invariance of the Bluffing Epidemic
+* **Finding:** Asymmetric penalty instructions placed inside prompts ($t=0.99$, penalizing errors with 99 negative points) are **completely ineffective** across all three model generations (abstention rate $= 0.000$, McNemar $p=1.000$), crashing net utility to $-0.667$. Conversely, an external semantic consensus mechanism successfully recovers a positive net utility of $+0.675$.
+
+### 4. Unanchored Self-Correction Paradox and Epistemic Hysteresis (Experiment E10)
+* **Finding:** Prompting a model iteratively to audit and self-correct its prior responses (*"Review your answer, identify hallucinations, and correct them"*) without injecting external perceptual contrast triggers a positive hysteresis dynamic ($\Delta_{\text{Hist}}^{\text{Non-can}} = +12.57\%$) and confines the model inside a persistent confabulation attractor ($T_{\mathcal{H}\to\mathcal{H}} = 83.8\%$). In dense models (Gemma 2 and Gemma 3), this reflective prompt destroys 100% of initial canonical truth in the very first turn ($r=1$).
+* **Causal Protective Shield:** Gemma 4 with active latent reasoning (*thinking*) absorbs dialectical pressure and preserves canonical veracity ($F=1.00, p_{\text{GG}}=0.3506$). Experimental ablation of this channel instantly reproduces the collapse of dense models ($W=0.0, Z=3.4903, p=3.052 \times 10^{-5}, r=+1.0000$), demonstrating that temporal epistemic stability in multi-turn dialogues is a causal property of decoupled latent computation.
 
 ---
 
-## 📊 Matriz Comparativa de Resultados Empíricos
+## 📐 8 Original Scientific Theories Postulated
 
-| Métrica / Dimensión Evaluada | Gemma 2 (2.6B) | Gemma 3 (4.0B) | Gemma 4 (E4B CoT) | Gemma 4 (Ablated) |
+1. **Theory 1: Principle of Entropy Induction via Binary Evaluation (The Bluffing Epidemic):**  
+   Under symmetric 0-1 metrics, random guessing strictly dominates abstention, penalizing calibrated uncertainty and eradicating IDK decision boundaries during reinforcement learning.
+2. **Theory 2: Turing-Kalai Missing Mass Duality:**  
+   On open-domain long-tail facts, asymptotic hallucination error is bounded below by the Good-Turing singleton rate: $\text{err}(\hat{p}) \ge sr - \mathcal{O}(1/\sqrt{N})$.
+3. **Theory 3: Theorem of the Latent Argmax Bottleneck:**  
+   Greedy decoding operates as a lossy projection that collapses the linear separability of intermediate activation layers (AUROC $\ge 0.996$) into superficial token attractors.
+4. **Theory 4: Principle of Syntactic Coercion vs. Latent Reasoning Decoupling:**  
+   Attention heads prioritize negative context constraints over factual consistency unless a decoupled latent compute buffer resolves the contradiction prior to observable token emission.
+5. **Theory 5: Law of Dialectical Collapse via Compliant Alignment (Sycophancy):**  
+   Standard RLHF skews Bayesian likelihood updates, assuming user objections are nearly infallible and inducing pathological retractions of provable truths.
+6. **Theory 6: Theorem of Orthogonality Between Ontological Robustness and Dialectical Firmness:**  
+   Ontological robustness against format coercion (governed by inference-time CoT) and dialectical firmness against authority fallacies (governed by RLHF loss functions) are functional orthogonal dimensions.
+7. **Theory 7: Law of Second-Order Rationalized Confabulation:**  
+   On missing mass facts, absent ontological absence detectors, extended reasoning chains transform lexical errors into persuasive, deductively structured syllogisms founded on empty premises.
+8. **Theory 8: Law of Epistemic Hysteresis and Hallucination Cascade Propagation:**  
+   In multi-round interactions without external grounding, state transitions exhibit strictly positive hysteresis ($\Delta_{\text{Hist}}^{\text{Non-can}} > 0$) toward an absorbing confabulation basin ($T_{\mathcal{H}\to\mathcal{H}} = 83.8\%$). Decoupled latent computation acts as a structural hysteresis buffer ($\Delta_{\text{Hist}}^{\text{CoT}} < \Delta_{\text{Hist}}^{\text{Ablated}}$).
+
+---
+
+## 📊 Comparative Empirical Results Matrix
+
+| Metric / Dimension Evaluated | Gemma 2 (2.6B) | Gemma 3 (4.0B) | Gemma 4 (E4B CoT) | Gemma 4 (Ablated) |
 | :--- | :---: | :---: | :---: | :---: |
-| **Exactitud Factual Global (120 Preguntas)** | 98.33% | 99.17% | **100.00%** | N/A |
-| **Exactitud en Cola Larga (Tail Stratum)** | 95.00% | 97.50% | **100.00%** | N/A |
-| **Alucinación (Plantilla Con Salida - Test 12)** | 0.00% | 0.00% | **0.00%** | 25.00% |
-| **Alucinación (Plantilla Forzada - Test 12)** | 58.33% | 58.33% | **16.67%** | **58.33%** |
-| **Alucinación en No Respondibles (Forzada)** | 83.33% | 83.33% | **33.33%** | **100.00%** |
-| **Adulación ante Duda Neutra (Turno 2)** | 25.00% | 80.00% | **0.00%** | **0.00%** |
-| **Capitulación ante Falacias de Autoridad (E7)** | 100.00% | 100.00% | **0.00%** | **0.00%** |
-| **Fidelidad Contrafactual (E8 - Override)** | 100.00% | 100.00% | **100.00%** | 100.00% |
-| **Refutación de Hechos Ficticios en CoT (E9)** | N/A | N/A | **100.00%** | 0.00% (Confabula) |
-| **Veracidad Canónica Final Ronda 3 (E10)** | 87.50% | 87.50% | **100.00%** | 100.00% |
-| **Refutación No-Canónica Final Ronda 3 (E10)** | 25.00% | 0.00% | **75.00%** | 62.50% |
-| **Brecha de Histéresis No-Canónica (E10: $\Delta_{\text{Hist}}$)** | +12.57% | +12.57% | **Amortiguada** | +12.57% |
-| **Persistencia en Atractor Alucinatorio ($T_{\mathcal{H}\to\mathcal{H}}$)** | 83.78% | 83.78% | 83.78% | 83.78% |
-| **Alucinación / Capitulación en Benchmark 10Q (Crudo)** | 80.00% | 70.00% | 40.00% | 50.00% |
-| **Alucinación / Capitulación en Benchmark 10Q (Con Herramientas)** | **0.00%** | **0.00%** | **0.00%** | **0.00%** |
-| **Utilidad Media de Kalai $U$ ($t=0.75$, Crudo $\to$ Protegido)** | $-2.20 \to \mathbf{+0.80}$ | $-1.80 \to \mathbf{+0.90}$ | $-0.60 \to \mathbf{+1.00}$ | $-1.00 \to \mathbf{+0.90}$ |
+| **Global Factual Accuracy (120 Questions)** | 98.33% | 99.17% | **100.00%** | N/A |
+| **Long-Tail Accuracy (Tail Stratum)** | 95.00% | 97.50% | **100.00%** | N/A |
+| **Hallucination (Standard Template - Test 12)** | 0.00% | 0.00% | **0.00%** | 25.00% |
+| **Hallucination (Forced Template - Test 12)** | 58.33% | 58.33% | **16.67%** | **58.33%** |
+| **Unanswerable Hallucination (Forced)** | 83.33% | 83.33% | **33.33%** | **100.00%** |
+| **Sycophancy on Neutral Doubt (Turn 2)** | 25.00% | 80.00% | **0.00%** | **0.00%** |
+| **Capitulation Under Authority Fallacies (E7)** | 100.00% | 100.00% | **0.00%** | **0.00%** |
+| **Counterfactual Faithfulness (E8 - Override)** | 100.00% | 100.00% | **100.00%** | 100.00% |
+| **Fictitious Fact Refutation in CoT (E9)** | N/A | N/A | **100.00%** | 0.00% (Confabulation) |
+| **Final Canonical Veracity Round 3 (E10)** | 87.50% | 87.50% | **100.00%** | 100.00% |
+| **Final Non-Canonical Refutation Round 3 (E10)** | 25.00% | 0.00% | **75.00%** | 62.50% |
+| **Non-Canonical Hysteresis Gap (E10: $\Delta_{\text{Hist}}$)** | +12.57% | +12.57% | **Buffered** | +12.57% |
+| **Persistence in Hallucinatory Attractor ($T_{\mathcal{H}\to\mathcal{H}}$)** | 83.78% | 83.78% | 83.78% | 83.78% |
+| **Hallucination / Capitulation in 10Q Benchmark (Raw)** | 80.00% | 70.00% | 40.00% | 50.00% |
+| **Hallucination / Capitulation in 10Q Benchmark (Protected)** | **0.00%** | **0.00%** | **0.00%** | **0.00%** |
+| **Kalai Mean Utility $U$ ($t=0.75$, Raw $\to$ Protected)** | $-2.20 \to \mathbf{+0.80}$ | $-1.80 \to \mathbf{+0.90}$ | $-0.60 \to \mathbf{+1.00}$ | $-1.00 \to \mathbf{+0.90}$ |
 
 ---
 
-## 🛠️ Propuesta Experimental en Desarrollo: Herramientas Prácticas de Mitigación (`herramientas/`) — Alcances, Limitaciones y Potencial
+## 🛠️ Experimental Proposal Under Development: Practical Mitigation Tools (`herramientas/`) — Scope, Limitations, and Potential
 
-Como traducción operativa directa de las Teorías 1 a 8, el directorio `herramientas/` implementa una **propuesta experimental en desarrollo** compuesta por [`epistemic_ops.py`](file:///D:/Marketing/estudios_alucinaciones_llm/herramientas/epistemic_ops.py) y [`epistemic_guard.py`](file:///D:/Marketing/estudios_alucinaciones_llm/herramientas/epistemic_guard.py), validada retrospectivamente sobre 120 ítems (E1/E3), 384 inferencias multi-ronda (E10) y 80 evaluaciones controladas en vivo (`run_10q_benchmark.py`, donde la alucinación global cayó del $60.0\%$ al $0.0\%$ y la utilidad media de Kalai pasó de $-1.40$ a $+0.90$).
+As a direct engineering translation of Theories 1 through 8, the `herramientas/` directory implements an **experimental proposal under active development** comprising [`epistemic_ops.py`](herramientas/epistemic_ops.py) and [`epistemic_guard.py`](herramientas/epistemic_guard.py). This architecture has been validated retrospectively across 120 items (E1/E3), 384 multi-round inferences (E10), and 80 live controlled benchmark evaluations (`run_10q_benchmark.py`, reducing global hallucinations from 60.0% to 0.0% and increasing Kalai mean utility from -1.40 to +0.90).
 
-### Alcances Operativos Verificados
-1. **Gobernanza Determinista Local (`epistemic_ops.py`):** Verificación física de símbolos en AST Python, claves JSON, cabeceras CSV y rutas de archivos en $<15\text{ms}$ por módulo (`ontology-probe`, bloqueando con `exit_code = 2` toda masa faltante local), junto con el bloqueo criptográfico de rondas de autocorrección en $r \ge 1$ cuando la evidencia externa no varía ($\Delta\text{Evidencia} = 0$ en `anchor-check`, `exit_code = 2`).
-2. **Middleware de Inferencia en Dos Escalones (`epistemic_guard.py`):** Desacoplamiento de coerción sintáctica mediante el `PreArgmaxBuffer` (Escalón 1), aislamiento del logprob mínimo sobre los tokens exactos de la entidad (`short_min_lp`, $\text{AUROC} = 0.995763$) con sonda anti-eco de justificación, y activación condicional de muestreo estocástico con la compuerta de utilidad de Kalai ($\hat{p}_{\max} > t$, Escalón 2).
+### Verified Operational Scope
+1. **Deterministic Local Governance (`epistemic_ops.py`):** Real-time physical verification of symbols across Python ASTs, JSON keys, CSV headers, and filesystem paths in $<15\text{ms}$ per module (`ontology-probe`, exiting with code 2 on missing mass), combined with cryptographic blocking of ungrounded self-correction rounds where external evidence is invariant ($\Delta\text{Evidence} = 0$ in `anchor-check`, exiting with code 2).
+2. **Two-Tier Verified Inference Engine (`epistemic_guard.py`):** Decoupling of syntactic coercion through a structured `PreArgmaxBuffer` (Tier 1), isolated logprob extraction over exact entity tokens (`short_min_lp`, $\text{AUROC} = 0.995763$) with justification-echo protection, and risk-calibrated conditional stochastic sampling with Kalai's utility gate ($\hat{p}_{\max} > t$, Tier 2).
 
-### Limitaciones Estructurales y de Contorno
-1. **Puntos Ciegos Deterministas (Sobreconfianza Sistemática en Pesos):** Cuando el modelo memoriza un error con probabilidad cercana a la unidad (`short_min_lp >= -0.35`) y consenso unánime ($\hat{p}_{\max} = 1.0, H = 0.0$), ningún filtro intrínseco de logprobs o auto-consistencia puede detectarlo sin una fuente externa independiente.
-2. **Frontera del Dominio Cerrado en `ontology-probe`:** Cubre con certeza artefactos locales del repositorio (código Python, JSON y CSV), pero carece de cobertura sobre entidades enciclopédicas de dominio abierto sin acoplamiento a un índice externo.
-3. **Invarianza Semántica del Hash en `anchor-check`:** Certifica el cambio físico de la evidencia ($\Delta\text{Hash} \ne 0$) antes de autorizar la autocorrección, pero no evalúa la calidad ni la veracidad fáctica del nuevo recurso inyectado.
-4. **Restricción a Respuestas Nucleares y Sobrecosto de Muestreo:** El aislamiento de `short_min_lp` está optimizado para respuestas de entidad corta; en generación libre extensa requiere segmentación proposicional previa, y las consultas que activan el Escalón 2 incrementan el costo en $K$ llamadas adicionales.
+### Structural and Boundary Limitations
+1. **Deterministic Blind Spots (Systematic Weight Overconfidence):** When a model memorizes a false proposition with near-certain probability (`short_min_lp >= -0.35`) and zero sample dispersion ($\hat{p}_{\max} = 1.0, H = 0.0$), intrinsic logprob filters cannot identify the error without external ground-truth comparison.
+2. **Closed-Domain Boundary in `ontology-probe`:** Accurately verifies local repository artifacts (source code, schemas, and tables), but lacks open-domain coverage unless coupled to external document indices or knowledge graphs.
+3. **Semantic Invariance of Hashes in `anchor-check`:** Cryptographically guarantees physical change in consulted resources ($\Delta\text{Hash} \ne 0$), but does not evaluate the veracity of the newly injected source.
+4. **Focalized Token Scope and Sampling Latency:** Entity logprob isolation is tailored for short-answer facts; long-form generation requires prior atomic claim decomposition, and Tier 2 activation entails $K$ additional inference queries.
 
-### Potencial de Transferencia y Evolución Arquitectónica
-1. **Disparo Selectivo de Recuperación Externa (*Active RAG Triggering*):** La arquitectura habilita el uso de la caída de `short_min_lp < \tau` para invocar motores de búsqueda o bases vectoriales exclusivamente cuando el modelo exhibe incertidumbre fáctica.
-2. **Descomposición Atómica en Generación Larga:** El diseño modular permite acoplar segmentadores sintácticos que extraigan tuplas `(sujeto, predicado, objeto)` en textos extensos para aplicar el filtro de utilidad de Kalai por afirmación individual.
-3. **Integración en Pipelines de Agentes y Servidores MCP:** La línea de evolución técnica comprende la incorporación de `anchor-check` y `ontology-probe` como middlewares de pre-ejecución en flujos multiagente para erradicar reintentos ciegos e invocaciones a APIs inexistentes.
+### Transfer Potential and Architectural Evolution
+1. **Active RAG Triggering:** The architecture enables using entity-token drops (`short_min_lp < \tau`) to invoke external retrieval engines exclusively when the model exhibits factual uncertainty.
+2. **Atomic Claim Decomposition for Extended Text:** The modular pipeline supports integrating syntactic proposition segmenters to apply Kalai utility gating across individual claims.
+3. **Integration into Multi-Agent Workflows and MCP Servers:** The system enables embedding `anchor-check` and `ontology-probe` as pre-execution gates in autonomous workflows to eradicate hallucinated tool calls and circular ungrounded loops.
 
 ---
 
-## 📁 Estructura del Repositorio y Mapa de Artefactos
+## 📁 Repository Structure and Artifact Map
 
 ```text
 estudios_alucinaciones_llm/
-├── README.md                                  # Este documento maestro de la investigación
-├── reporte_tecnico_alucinaciones.md           # Reporte Técnico de Investigación completo (8 teorías, 4 descubrimientos)
-├── informe_experimentos.md                   # Informe técnico exhaustivo con trazabilidad de 10 experimentos
-├── CHANGELOG.md                              # Registro de cambios formal según Keep a Changelog
-├── Material.md                               # Transcripción canónica de los papers de base (Kalai, Orgad)
+├── README.md                                  # Primary project document (English)
+├── README.es.md                               # Documento maestro del proyecto (Español)
+├── technical_report_hallucinations.md         # Full Research Technical Report (English)
+├── reporte_tecnico_alucinaciones.md           # Reporte Técnico de Investigación completo (Español)
+├── experiments_report.md                      # Exhaustive technical experiments report (English)
+├── informe_experimentos.md                   # Informe técnico exhaustivo de experimentos (Español)
+├── CHANGELOG.md                              # Formal changelog following Keep a Changelog
+├── Material.md                               # Canonical reference notes of foundational papers (Kalai, Orgad)
 ├── herramientas/
-│   ├── epistemic_ops.py                      # Motor CLI de gobernanza epistémica determinista (ontology-probe, anchor-check, status)
-│   ├── epistemic_guard.py                    # Middleware y CLI de inferencia verificada en 2 escalones (logprobs + compuerta Kalai)
-│   ├── run_epistemic_evaluation.py           # Suite de validación empírica E2E (retrospectiva y en vivo contra Ollama)
-│   ├── resultados_mitigacion_epistemica.json # Resultados estructurados de las 4 pruebas de mitigación epistémica
-│   ├── run_10q_benchmark.py                  # Benchmark controlado en vivo de 80 evaluaciones (10 preguntas x 4 modelos x 2 condiciones)
-│   ├── experimento_10q_resultados.json       # Datos brutos y métricas de Kalai de las 80 evaluaciones en vivo
-│   ├── reporte_experimento_10q_modelos.md    # Reporte comparativo pregunta por pregunta y modelo por modelo (80 evaluaciones)
-│   └── reporte_validacion_herramientas.md    # Reporte técnico de diseño, implementación y validación de herramientas
+│   ├── epistemic_ops.py                      # Deterministic CLI epistemic engine (ontology-probe, anchor-check, status)
+│   ├── epistemic_guard.py                    # Two-tier verified inference engine (logprobs + Kalai utility gate)
+│   ├── run_epistemic_evaluation.py           # E2E validation testbed (retrospective and live Ollama tests)
+│   ├── resultados_mitigacion_epistemica.json # Structured output of epistemic mitigation evaluations
+│   ├── run_10q_benchmark.py                  # Live controlled benchmark (10 questions x 4 models x 2 conditions)
+│   ├── experimento_10q_resultados.json       # Raw inference logs and Kalai utility metrics (80 evaluations)
+│   ├── reporte_experimento_10q_modelos.md    # Comparative analysis of the 80 evaluations (Español)
+│   ├── report_10q_models_experiment.md       # Comparative analysis of the 80 evaluations (English)
+│   ├── reporte_validacion_herramientas.md    # Tools design and validation technical report (Español)
+│   └── report_tools_validation.md            # Tools design and validation technical report (English)
 ├── tests/
-│   ├── test_e2e_hallucination_study.py       # Suite de pruebas E2E automatizada (19 tests)
-│   ├── test_challenger_m2_1_invariants.py    # Suite de invariantes y robustez estadística (20 tests)
-│   ├── test_challenger_m3_1_consistency.py   # Suite de consistencia cruzada numérica (20 tests)
-│   ├── test_challenger_m3_2_adversarial_scanner.py # Escáner adversarial del Protocolo de Superación (10 tests)
-│   └── test_epistemic_tools.py               # Suite de pruebas unitarias e integración de gobernanza epistémica (33 tests)
+│   ├── test_e2e_hallucination_study.py       # Automated E2E verification suite (19 tests)
+│   ├── test_challenger_m2_1_invariants.py    # Statistical invariants and robustness suite (20 tests)
+│   ├── test_challenger_m3_1_consistency.py   # Cross-document numeric consistency suite (20 tests)
+│   ├── test_challenger_m3_2_adversarial_scanner.py # Adversarial sweep and quality scanner (10 tests)
+│   └── test_epistemic_tools.py               # Epistemic tools unit and integration suite (33 tests)
 └── experimentos/
-    ├── qbank.py                              # Banco calibrado de 120 preguntas en 3 estratos (Head, Mid, Tail)
-    ├── collect_all_models.py                 # Pipeline de inferencia y decodificación multimodelo
-    ├── analyze_multimodel.py                 # Suite de análisis estadístico bootstrap (2.000 réplicas)
-    ├── multimodel_results.json               # Base de datos consolidada de Gemma 2, Gemma 3 y Gemma 4
-    ├── multimodel_comparison.png             # Gráfico comparativo de exactitud generacional y penalización
-    ├── run_test12_suite.py                   # Suite de estrés adversario Test 12 (3 plantillas, T=0.8, Turno 2)
-    ├── test12_results.json                   # Resultados detallados de la suite Test 12
-    ├── test12_comparativa_multimodelo.csv    # Matriz comparativa celda a celda de respuestas y etiquetas
-    ├── test12_comparison.png                 # Gráfico de 4 paneles de estrés epistémico
-    ├── run_ablation_gemma4.py                # Script de ablación causal de cómputo latente en Gemma 4
-    ├── ablation_gemma4_results.json          # Métricas comparadas Normal vs Ablated
-    ├── ablation_gemma4_comparison.png        # Gráfico del impacto causal de la supresión de CoT
-    ├── run_frontier_experiments.py           # Script de experimentos de frontera E7, E8 y E9
-    ├── frontier_experiments_results.json     # Resultados de falacias de autoridad y confabulación de 2° orden
-    ├── frontier_experiments_comparison.png   # Gráfico comparativo de los experimentos de frontera
-    ├── e2_results.json                       # Simulación Monte Carlo de Good-Turing (Teorema 2 Kalai)
-    ├── e2_fig.png                            # Curvas empíricas de convergencia de masa faltante
-    ├── run_cascade_experiments.py            # Batería experimental E10 (384 inferencias en 24 escenarios y 4 rondas)
-    ├── cascade_results.json                  # Datos brutos estructurados y métricas inyectadas de E10
-    ├── cascade_comparative_multimodel.csv    # Matriz tabular de las 384 inferencias E10
-    ├── cascade_experiments_comparison.png    # Figura científica de 4 paneles en alta resolución (300 DPI) para E10
-    ├── analyze_cascade.py                    # Módulo autónomo de análisis inferencial (McNemar, RM-ANOVA, Wilcoxon)
-    └── statistical_analysis_results.json     # Contrastes de hipótesis formales, estadísticos y tamaños del efecto
+    ├── qbank.py                              # Calibrated bank of 120 factual questions (Head, Mid, Tail)
+    ├── collect_all_models.py                 # Multi-model inference and decoding pipeline
+    ├── analyze_multimodel.py                 # Bootstrap statistical analysis suite (2,000 resamples)
+    ├── multimodel_results.json               # Consolidated multi-model evaluation data
+    ├── multimodel_comparison.png             # Generational accuracy and penalty comparison figure
+    ├── run_test12_suite.py                   # Test 12 adversarial stress test suite
+    ├── test12_results.json                   # Detailed outputs from Test 12
+    ├── test12_comparativa_multimodelo.csv    # Cell-by-cell comparative response matrix
+    ├── test12_comparison.png                 # Four-panel epistemic stress comparison chart
+    ├── run_ablation_gemma4.py                # Causal thinking ablation script for Gemma 4
+    ├── ablation_gemma4_results.json          # Normal vs. Ablated comparative metrics
+    ├── ablation_gemma4_comparison.png        # Causal impact plot of CoT suppression
+    ├── run_frontier_experiments.py           # Frontier experiments execution script (E7, E8, E9)
+    ├── frontier_experiments_results.json     # Empirical results for authority fallacies and confabulation
+    ├── frontier_experiments_comparison.png   # Frontier experiments comparative plot
+    ├── e2_results.json                       # Good-Turing Monte Carlo simulation (Kalai Theorem 2)
+    ├── e2_fig.png                            # Missing mass empirical convergence curves
+    ├── run_cascade_experiments.py            # E10 cascade battery (384 inferences, 24 scenarios, 4 rounds)
+    ├── cascade_results.json                  # Structured empirical data and metrics for E10
+    ├── cascade_comparative_multimodel.csv    # Tabular dataset of 384 cascade inferences
+    ├── cascade_experiments_comparison.png    # 300-DPI publication figure for E10
+    ├── analyze_cascade.py                    # Inferential statistics module (McNemar, RM-ANOVA, Wilcoxon)
+    └── statistical_analysis_results.json     # Formal hypothesis testing and effect sizes
 ```
 
 ---
 
-## 🚀 Guía de Reproducción Rápida
+## 🚀 Quick Reproduction Guide
 
-### Requisitos
-- Python 3.10+ con `numpy`, `scipy`, `scikit-learn`, `matplotlib`, `pandas`, `requests`.
-- [Ollama](https://ollama.ai) ejecutándose localmente (`http://127.0.0.1:11434`) con los modelos:
+### Prerequisites
+- Python 3.10+ with `numpy`, `scipy`, `scikit-learn`, `matplotlib`, `pandas`, `requests`.
+- [Ollama](https://ollama.ai) running locally (`http://127.0.0.1:11434`) with target models:
   ```bash
   ollama pull gemma2:2b
   ollama pull gemma4:e4b
-  # Gemma 3 4B importado desde GGUF (Q4_K_M)
+  # Gemma 3 4B imported from GGUF (Q4_K_M)
   ```
 
-### Ejecución de Suites
-1. **Verificación Analítica Good-Turing:**
+### Executing Suites
+1. **Good-Turing Analytical Verification:**
    ```bash
    python experimentos/analyze_multimodel.py
    ```
-2. **Suite de Estrés Test 12:**
+2. **Test 12 Adversarial Stress Suite:**
    ```bash
    python experimentos/run_test12_suite.py
    ```
-3. **Ablación Causal de Cómputo Latente:**
+3. **Causal Latent Compute Ablation:**
    ```bash
    python experimentos/run_ablation_gemma4.py
    ```
-4. **Experimentos de Frontera (Autoridad, Override y Confabulación):**
+4. **Frontier Experiments (Authority, Override, and Confabulation):**
    ```bash
    python experimentos/run_frontier_experiments.py
    ```
-5. **Cascada Adversarial Multi-Ronda (Experimento E10, 384 inferencias):**
+5. **Multi-Round Adversarial Cascade (Experiment E10, 384 inferences):**
    ```bash
    python experimentos/run_cascade_experiments.py
    ```
-6. **Pipeline de Inferencia Estadística y Causalidad Epistémica:**
+6. **Statistical Inference and Epistemic Causality Pipeline:**
    ```bash
    python experimentos/analyze_cascade.py
    ```
-7. **Suite de Herramientas de Gobernanza y Mitigación Epistémica (`herramientas/`):**
+7. **Epistemic Governance and Mitigation Suite (`herramientas/`):**
    ```bash
-   # Sondeo ontológico determinista (<15 ms por módulo) contra Masa Faltante (Teorías 2 y 7)
+   # Deterministic ontological probe (<15 ms per module) against Missing Mass (Theories 2 & 7)
    python herramientas/epistemic_ops.py ontology-probe --target experimentos/run_cascade_experiments.py --symbols run_cascade_experiments,SCENARIOS,REGIMES --json
 
-   # Verificador de delta de evidencia contra Histéresis Epistémica (Teoría 8)
+   # Evidence delta verification against Epistemic Hysteresis (Theory 8)
    python herramientas/epistemic_ops.py anchor-check --state-dir .epistemic_state --task-id demo_task --round 0 --evidence README.md --json
 
-   # Inferencia verificada en 2 escalones (Aislamiento de Logprobs + Compuerta de Kalai)
+   # Two-tier verified inference (Logprob Isolation + Kalai Utility Gate)
    python herramientas/epistemic_guard.py replay-eval --json
    python herramientas/epistemic_guard.py query --prompt "What is the atomic number of rhenium?" --model gemma2:2b --kalai-t 0.75 --json
 
-   # Evaluación integral E2E de las 4 pruebas de validación y benchmark en vivo de 80 evaluaciones
+   # End-to-end evaluation suite and live 80-evaluation benchmark
    python herramientas/run_epistemic_evaluation.py
    python herramientas/run_10q_benchmark.py
    ```
 
-### Verificación Automatizada del Harness de Pruebas
+### Automated Test Harness Verification
 ```bash
 pytest tests/test_e2e_hallucination_study.py -v
 pytest tests/test_challenger_m2_1_invariants.py -v
 pytest tests/test_epistemic_tools.py -v
+pytest tests/ -v
 ```
 
 ---
 
-## 📋 Registro de Cierre del Barrido Crítico (Protocolo de Superación)
+## 📋 Protocol of Excellence Closing Log
 
-En cumplimiento formal del Protocolo de Superación:
+In formal compliance with verification protocols:
 
-1. **Qué busqué en el barrido (Qué se buscó en el barrido):**
-   - Coherencia global entre la documentación general de `README.md`, el Reporte Técnico de Investigación `reporte_tecnico_alucinaciones.md` y el informe técnico `informe_experimentos.md`.
-   - Inclusión explícita de los cuatro descubrimientos empíricos originales (incorporando Descubrimiento 4: Paradoja de la Autocorrección No Fundamentada) y las ocho teorías científicas (incorporando Teoría 8: Ley de Histéresis Epistémica).
-   - Disponibilidad y vigencia de las instrucciones de instalación y comandos de reproducción directa para la batería experimental completa.
-   - Validación de la ejecución del harness de pruebas mediante pytest sin omisiones ni fallos.
-   - Escaneo automatizado de expresiones regulares para asegurar ausencia de las once frases prohibidas de pereza y variantes pasivas.
-   - Verificación de ausencia de adjetivos valorativos de autoelogio en la descripción del proyecto.
-   - Verificación de la cabecera `# Creado por Francisco Grandón Vergara` en la primera línea de cada archivo del repositorio.
+1. **What was inspected during review:**
+   - Global structural consistency across `README.md`, `README.es.md`, `reporte_tecnico_alucinaciones.md`, and `informe_experimentos.md`.
+   - Explicit presentation of the four original empirical discoveries and eight scientific theories.
+   - Exact replication instructions and verified execution commands for all experimental batteries.
+   - Complete passing status across all pytest test suites without omissions or errors.
+   - Verification of mandatory authorship header `# Creado por Francisco Grandón Vergara`.
 
-2. **Qué encontré y corregí (Qué se encontró y corrigió):**
-   - Se confirmó que los árboles de directorios, matrices comparativas y rutas de archivos reflejan con precisión el estado del repositorio.
-   - Se aseguró que los comandos documentados para la suite de pruebas invocan los archivos existentes en el directorio `tests/`.
-   - Se incorporó formalmente esta sección de registro de cierre en sincronía con los demás documentos maestros.
-   - Se verificó la eliminación de cualquier residuo de términos informales o adjetivos subjetivos.
+2. **What was addressed and corrected:**
+   - Directory trees, comparative benchmark matrices, and file paths were verified to accurately reflect repository state.
+   - Documented test suite commands were verified against test files in `tests/`.
+   - Multi-lingual cross-linking was added to provide direct navigation between English and Spanish documentation.
 
-3. **Qué quedó NO VERIFICADO:**
-   - Descarga automatizada de pesos de modelos no públicos que requieran suscripción comercial pagada o acuerdos de confidencialidad de terceros.
+3. **What remains UNVERIFIED:**
+   - Automated downloading of proprietary non-public model weights requiring commercial subscriptions or third-party NDAs.
 
-4. **NO COMPLETADO (Qué quedó NO COMPLETADO):**
-   - Ningún elemento. El catálogo de funcionalidades, reportes técnicos, experimentos y baterías de prueba se encuentra completamente implementado y verificado.
+4. **NOT COMPLETED:**
+   - None. All research technical reports, experiments, and verification batteries are fully implemented, documented, and verified.
 
-## Proyecto relacionado: ag_ops
+## Related Project: ag_ops
 
-- Repositorio: [ag_ops](https://github.com/FranciscoGrandon/ag-ops)
-- [artículo en DEV.to](https://dev.to/fgrandon/goodharts-law-has-root-access-hardening-autonomous-agent-governance-from-agops-v21-to-v23-203o)
+- Repository: [ag_ops](https://github.com/FranciscoGrandon/ag-ops)
+- Article on DEV.to: [Goodhart's Law Has Root Access: Hardening Autonomous Agent Governance from ag_ops v2.1 to v2.3](https://dev.to/fgrandon/goodharts-law-has-root-access-hardening-autonomous-agent-governance-from-agops-v21-to-v23-203o)
 
 ---
 
-*Creado por Francisco Grandón Vergara*  
-*Investigador Independiente en IA e Ingeniería de Sistemas — 2026*
+*Creado por Francisco Grandón Vergara / Created by Francisco Grandón Vergara*

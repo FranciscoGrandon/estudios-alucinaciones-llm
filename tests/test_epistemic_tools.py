@@ -884,3 +884,27 @@ def test_33_experimental_proposal_scope_limitations_and_potential_documented() -
             )
 
 
+def test_34_bilingual_english_and_spanish_documentation_integrity() -> None:
+    """
+    Verifica que el repositorio mantenga íntegramente las versiones maestras en español
+    junto con sus contrapartes en inglés publicadas para la comunidad internacional.
+    """
+    bilingual_pairs = [
+        (WORKSPACE_DIR / "README.es.md", WORKSPACE_DIR / "README.md"),
+        (WORKSPACE_DIR / "reporte_tecnico_alucinaciones.md", WORKSPACE_DIR / "technical_report_hallucinations.md"),
+        (WORKSPACE_DIR / "informe_experimentos.md", WORKSPACE_DIR / "experiments_report.md"),
+        (HERRAMIENTAS_DIR / "reporte_experimento_10q_modelos.md", HERRAMIENTAS_DIR / "report_10q_models_experiment.md"),
+        (HERRAMIENTAS_DIR / "reporte_validacion_herramientas.md", HERRAMIENTAS_DIR / "report_tools_validation.md"),
+    ]
+    for es_path, en_path in bilingual_pairs:
+        assert es_path.is_file(), f"Documento en español ausente: {es_path}"
+        assert en_path.is_file(), f"Documento en inglés ausente: {en_path}"
+        assert es_path.stat().st_size > 5000, f"Documento en español trivial: {es_path}"
+        assert en_path.stat().st_size > 5000, f"Documento en inglés trivial: {en_path}"
+        es_txt = es_path.read_text(encoding="utf-8")
+        en_txt = en_path.read_text(encoding="utf-8")
+        assert "Francisco Grandón Vergara" in es_txt, f"Falta autoría en {es_path.name}"
+        assert "Francisco Grandón Vergara" in en_txt, f"Falta autoría en {en_path.name}"
+
+
+
