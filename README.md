@@ -1,3 +1,4 @@
+# Creado por Francisco Grandón Vergara
 # 🔬 Research Technical Report on LLM Hallucinations: Statistical Inevitability, Syntactic Coercion, Latent Decoupling, and Epistemic Hysteresis
 
 > 🇬🇧 **English Version** | 🇪🇸 **[Versión en Español (Spanish Version)](README.es.md)**  
