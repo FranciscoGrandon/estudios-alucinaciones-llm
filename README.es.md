@@ -1,4 +1,4 @@
-# Creado por Francisco Grandón Vergara
+
 # 🔬 Reporte Técnico de Investigación sobre Alucinaciones en LLMs: Inevitabilidad Estadística, Coerción Sintáctica, Desacoplamiento Latente e Histéresis Epistémica
 
 > 🇪🇸 **Versión en Español** | 🇬🇧 **[English Version](README.md)**  
@@ -216,31 +216,6 @@ pytest tests/test_epistemic_tools.py -v
 ```
 
 ---
-
-## 📋 Registro de Cierre del Barrido Crítico (Protocolo de Superación)
-
-En cumplimiento formal del Protocolo de Superación:
-
-1. **Qué busqué en el barrido (Qué se buscó en el barrido):**
-   - Coherencia global entre la documentación general de `README.md`, el Reporte Técnico de Investigación `reporte_tecnico_alucinaciones.md` y el informe técnico `informe_experimentos.md`.
-   - Inclusión explícita de los cuatro descubrimientos empíricos originales (incorporando Descubrimiento 4: Paradoja de la Autocorrección No Fundamentada) y las ocho teorías científicas (incorporando Teoría 8: Ley de Histéresis Epistémica).
-   - Disponibilidad y vigencia de las instrucciones de instalación y comandos de reproducción directa para la batería experimental completa.
-   - Validación de la ejecución del harness de pruebas mediante pytest sin omisiones ni fallos.
-   - Escaneo automatizado de expresiones regulares para asegurar ausencia de las once frases prohibidas de pereza y variantes pasivas.
-   - Verificación de ausencia de adjetivos valorativos de autoelogio en la descripción del proyecto.
-   - Verificación de la cabecera `# Creado por Francisco Grandón Vergara` en la primera línea de cada archivo del repositorio.
-
-2. **Qué encontré y corregí (Qué se encontró y corrigió):**
-   - Se confirmó que los árboles de directorios, matrices comparativas y rutas de archivos reflejan con precisión el estado del repositorio.
-   - Se aseguró que los comandos documentados para la suite de pruebas invocan los archivos existentes en el directorio `tests/`.
-   - Se incorporó formalmente esta sección de registro de cierre en sincronía con los demás documentos maestros.
-   - Se verificó la eliminación de cualquier residuo de términos informales o adjetivos subjetivos.
-
-3. **Qué quedó NO VERIFICADO:**
-   - Descarga automatizada de pesos de modelos no públicos que requieran suscripción comercial pagada o acuerdos de confidencialidad de terceros.
-
-4. **NO COMPLETADO (Qué quedó NO COMPLETADO):**
-   - Ningún elemento. El catálogo de funcionalidades, reportes técnicos, experimentos y baterías de prueba se encuentra completamente implementado y verificado.
 
 ## Proyecto relacionado: ag_ops
 
